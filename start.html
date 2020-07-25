@@ -280,7 +280,8 @@ $.ajax({
 		"registration_ids":to,
 		"notification":{
 			"title": "Hurry Up!!",
-			"body": ((f_name) +" your ticket number "+ (n) +" at "+department+" after 3 tickets")
+			"body": ((f_name) +" your ticket number "+ (n) +" at "+department+" after 3 tickets"),
+      			"sound" : "default"
 		}
 	}),
 	success: function(response){
