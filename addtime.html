@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+	<head>
+		<meta charset="UTF-8" />
+		<link rel="shortcut icon" type="image/x-icon" href="images/Logo white.ico" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"> 
+		<meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+		<title>Edit Time</title>
+		<meta name="description" content="A sidebar menu as seen on the Google Nexus 7 website" />
+		<meta name="keywords" content="google nexus 7 menu, css transitions, sidebar, side menu, slide out menu" />
+		<meta name="author" content="Codrops" />
+		<link rel="stylesheet" type="text/css" href="css/normalize.css" />
+		<link rel="stylesheet" type="text/css" href="css/demo.css" />
+		<link rel="stylesheet" type="text/css" href="css/component.css" />
+		<link rel="stylesheet" type="text/css" href="css/medhat.css" />
+
+		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+		 <script src="https://www.gstatic.com/firebasejs/7.16.1/firebase-app.js"></script>
+		 <script src="https://www.gstatic.com/firebasejs/7.16.1/firebase-firestore.js"></script>
+	 
+		<style>
+			a:hover{
+				color: #007DD7;
+				background-color: transparent;
+				
+			}
+		</style>
+	</head>
+	<body style="font-family: coves;">
+		
+<!-- partial -->
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
+<script src='https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/jquery-ui.min.js'></script>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/gsap/1.15.0/TweenMax.min.js'></script><script  src="./script.js"></script>
+		<div class="container">
+
+				<div class="layer">
+					<div class="container h-100">
+						<div class="row justify-content-md-center h-100">
+							<div class="card-wrapper">
+								<div class="brand">
+									
+								</div>
+								<div class="card fat" >
+									<div class="card-body">
+										<div class="content" style="text-align: left;" >
+											<div class="ticketcard">
+											  <div class="firstinfo"><img  src="img/clock.png">
+												<div class="profileinfo">
+													<form method="post" style="padding: 8px;">
+														<div   style="  text-align: center;">
+														<select  id="min"></select>	
+													</div>								
+												</div>
+												<button style="padding: 8px;  margin: auto;" class="nextbutton" type="button" id = "button">Edit Waiting Time</button>
+											</form>
+											</div>
+											</div>
+										  <!--  <div class="badgescard"> <span class="devicons devicons-django"></span><span class="devicons devicons-python"> </span><span class="devicons devicons-codepen"></span><span class="devicons devicons-javascript_badge"></span><span class="devicons devicons-gulp"></span><span class="devicons devicons-angular"></span><span class="devicons devicons-sass"> </span></div>-->
+										  </div>
+										  
+									</div>
+										
+									
+									<!--<div class="card-body">
+										<h4 class="card-title">Edit Time</h4>
+									
+									
+									<form method="post" style="padding: 8px;">
+										<div   style="  text-align: center; margin-bottom: 20px;">
+										<select  id="min"></select>	
+									</div>								
+										<button style="padding: 8px;  margin: auto;" class="nextbutton" type="button" id = "button">Edit Waiting Time</button>
+									  </form>
+									</div>-->
+								</div>
+
+							</div>
+						
+						</div>
+					
+					</div>
+				</div>
+				
+			<ul id="gn-menu" class="gn-menu-main">
+				<li class="gn-trigger">
+					<a class="gn-icon gn-icon-menu"><span>Menu</span></a>
+					<nav class="gn-menu-wrapper">
+						<div class="gn-scroller">
+							<ul class="gn-menu">
+								<li><a class="gn-icon gn-icon-download" href="dashboard.html">Dashboard</a></li>
+										<li><a class="gn-icon gn-icon-illustrator" href="start.html">Start Service</a></li>
+										<li><a class="gn-icon gn-icon-photoshop" href="addtime.html">Add Time</a></li>
+									
+								<li><a class="gn-icon gn-icon-archive" href="index.html">About QMS</a></li>
+								<ul class="gn-submenu">
+								<li><a class="gn-icon gn-icon-cog">Settings</a></li>
+								<li><a class="gn-icon gn-icon-help">Help</a></li>
+						    	</ul>
+							</ul>
+							<div class="footer">
+								<div  id="copy"><a style="color: #666666;"  href="" target="_blank">All Rights Reserved to: <b>INTEGRITY©</b></a></div>
+							</div>
+									
+						</div><!-- /gn-scroller -->
+					</nav>
+				</li>
+				<li><a class="gn-icon gn-icon-logout" href="login.html">Logout</a></li>
+<!--
+				<li><a class="codrops-icon codrops-icon-prev" href="http://tympanus.net/Development/HeaderEffects/"><span>Previous Demo</span></a></li>
+				<li><a class="codrops-icon codrops-icon-drop" href="http://tympanus.net/codrops/?p=16030"><span>Back to the Codrops Article</span></a></li>
+-->
+			</ul>
+		
+		</div>
+	
+
+			
+	
+		<script src="js/classie.js"></script>
+		<script src="js/gnmenu.js"></script>
+		<script>
+			new gnMenu( document.getElementById( 'gn-menu' ) );
+		</script>
+	<script>
+		var start = 0;
+var end = 60;
+var options = "";
+for(var year = start ; year <=end; year++){
+  options += "<option>"+ year +"</option>";
+}
+document.getElementById("min").innerHTML = options;
+function classReg( className ) {
+  return new RegExp("(^|\\s+)" + className + "(\\s+|$)");
+}
+
+	</script>
+	
+	<script src="js/classie.js"></script>
+	<script src="js/gnmenu.js"></script>
+	<script>
+		new gnMenu( document.getElementById( 'gn-menu' ) );
+	</script>
+	<script>
+		// Your web app's Firebase configuration
+		var firebaseConfig = {
+		  apiKey: "AIzaSyAu2RaUIww5TWUnuwg1nBWTkuft1IVPn4Y",
+		  authDomain: "qms-f137a.firebaseapp.com",
+		  databaseURL: "https://qms-f137a.firebaseio.com",
+		  projectId: "qms-f137a",
+		  storageBucket: "qms-f137a.appspot.com",
+		  messagingSenderId: "1036646415502",
+		  appId: "1:1036646415502:web:64d51a6d915d68f2569ddf",
+		  measurementId: "G-F28BV22X15"
+		};
+		// Initialize Firebase
+		firebase.initializeApp(firebaseConfig);
+		const db= firebase.firestore();
+		
+	  
+		  
+	  var docRef = db.collection("servicesDetails").doc("Receive Books");
+	 
+	  
+			  document.getElementById("button").onclick=function(){
+			  docRef.update({
+				time:parseFloat( document.getElementById("min").value)
+			  });
+		
+	  };
+	 
+		
+
+	  </script>
+	</body>
+</html>

@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <link rel="shortcut icon" type="image/x-icon" href="images/Logo white.ico" />
+	<meta charset="UTF-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"> 
+	<meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+	<title>QMS</title>
+	<meta name="description" content="A sidebar menu as seen on the Google Nexus 7 website" />
+	<meta name="keywords" content="google nexus 7 menu, css transitions, sidebar, side menu, slide out menu" />
+	<meta name="author" content="Codrops" />
+	<link rel="stylesheet" type="text/css" href="css/normalize.css" />
+	<link rel="stylesheet" type="text/css" href="css/demo.css" />
+	<link rel="stylesheet" type="text/css" href="css/component.css" />
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+	 <script src="https://www.gstatic.com/firebasejs/7.16.1/firebase-app.js"></script>
+	 <script src="https://www.gstatic.com/firebasejs/7.16.1/firebase-firestore.js"></script>
+ 
+	<style>
+		a:hover{
+			color: #007DD7;
+			background-color: transparent;
+			
+		}
+	</style>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <title>QMS</title>
+
+  <!-- Bootstrap core CSS -->
+  <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Custom fonts for this template -->
+  <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:200,200i,300,300i,400,400i,600,600i,700,700i,900,900i" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Merriweather:300,300i,400,400i,700,700i,900,900i" rel="stylesheet">
+  <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+
+  <!-- Custom styles for this template -->
+  <link href="css/coming-soon.min.css" rel="stylesheet">
+
+</head>
+
+<body>
+
+  <div class="overlay"></div>
+  <video playsinline="playsinline" autoplay="autoplay" muted="muted" loop="loop">
+    <source src="mp4/qms.mp4" type="video/mp4">
+  </video>
+
+  <div class="masthead">
+    <div class="masthead-bg"></div>
+    <div class="container h-100">
+      <div class="row h-100">
+        <div class="col-12 my-auto">
+          <div style="margin-top: 300px ;"  class="masthead-content text-white py-5 py-md-0">
+          <h1 style="color: #007DD7 ;" class="mb-3">QMS</h1>
+            <p style="color: #666666 ;" class="mb-5">Allow your customer to enter the queue or book an appointement with just a few click 
+              <strong>Real-Time Service</strong>! Never let your customer wait anymore</p>
+			  <div id="copy"><a  style="color: #000000;" href="" target="_blank">All Rights Reserved to: <b >INTEGRITY©</b></a></div>
+
+		</div>  
+	        
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="social-icons">
+    <ul class="list-unstyled text-center mb-0">
+      <li class="list-unstyled-item">
+        <a href="#">
+          <i class="fab fa-twitter"></i>
+        </a> 
+      </li>
+      <li class="list-unstyled-item">
+        <a href="#">
+          <i class="fab fa-facebook-f"></i>
+        </a>
+      </li>
+      <li class="list-unstyled-item">
+        <a href="#">
+          <i class="fab fa-instagram"></i>
+        </a>
+      </li>
+    </ul>
+  </div>
+  <ul id="gn-menu" class="gn-menu-main">
+	<li class="gn-trigger">
+		<a class="gn-icon gn-icon-menu"><span>Menu</span></a>
+		<nav class="gn-menu-wrapper">
+			<div class="gn-scroller">
+				<ul class="gn-menu">
+					<li><a class="gn-icon gn-icon-download" href="dashboard.html">Dashboard</a></li>
+							<li><a class="gn-icon gn-icon-illustrator" href="start.html">Start Service</a></li>
+							<li><a class="gn-icon gn-icon-photoshop" href="addtime.html">Add Time</a></li>
+						
+          <li><a class="gn-icon gn-icon-archive" href="index.html">About QMS</a></li>
+					<ul class="gn-submenu">
+					<li><a class="gn-icon gn-icon-cog">Settings</a></li>
+					<li><a class="gn-icon gn-icon-help">Help</a></li>
+					</ul>
+				</ul>
+				
+						
+			</div><!-- /gn-scroller -->
+		</nav>
+	</li>
+	<li><a class="gn-icon gn-icon-logout" href="login.html">Logout</a></li>
+<!--
+	<li><a class="codrops-icon codrops-icon-prev" href="http://tympanus.net/Development/HeaderEffects/"><span>Previous Demo</span></a></li>
+	<li><a class="codrops-icon codrops-icon-drop" href="http://tympanus.net/codrops/?p=16030"><span>Back to the Codrops Article</span></a></li>
+-->
+</ul>
+  <!-- Bootstrap core JavaScript -->
+  <script src="vendor/jquery/jquery.min.js"></script>
+  <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+  <!-- Custom scripts for this template -->
+  <script src="js/coming-soon.min.js"></script>
+  <script src="js/classie.js"></script>
+  <script src="js/gnmenu.js"></script>
+  <script>
+    var temp = sessionStorage.getItem("temp");
+console.log(temp);
+	  new gnMenu( document.getElementById( 'gn-menu' ) );
+  </script>
+</body>
+
+</html>

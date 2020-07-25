@@ -1,0 +1,44 @@
+body {
+  margin: 0;
+  padding: 0;
+  background: url(images/656665.jpg)  no-repeat center center fixed;
+  color: #fff;
+  height: 100%;
+  min-height: 100%;
+  overflow: hidden;
+  font-family: 'Open Sans', sans-serif;
+  position: fixed;
+}
+body #copy {
+  position: absolute;
+  bottom: 0;
+  height: 40px;
+  width: 100%;
+  text-align: center;
+  text-transform: uppercase;
+  line-height: 14px;
+  font-size: 10px;
+  font-weight: 400;
+  z-index: 10;
+}
+
+
+body #copy a {
+  color: #fff;
+  text-decoration: none;
+  transition: all 0.3s ease-in-out 0s;
+}
+body #copy a b {
+  font-weight: 700;
+}
+body #copy a:hover {
+  color: #fff;
+}
+
+
+
+.logoImage{
+display: block;
+margin-left: auto;
+margin-right: auto;
+}

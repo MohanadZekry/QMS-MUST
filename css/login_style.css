@@ -1,0 +1,166 @@
+* {
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+@font-face {
+	font-family: coves;
+	src: url(Coves\ Bold.otf);
+	
+  }
+
+html, body {
+  height: 100%;
+}
+
+body {
+  display: -webkit-box;
+  display: flex;
+  -webkit-box-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+          justify-content: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+          flex-direction: column;
+          
+  position: relative;
+  background: url(656665.png)  no-repeat center center fixed ;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.9rgba(255, 255, 255, 0.9).9));
+	font-family: coves;
+  font-size: 1.5em;
+}
+body:before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+ 
+}
+.footer {
+	margin: 40px 0;
+	color: snow;
+	text-align: center;
+}
+.login-form {
+  width: 100%;
+  padding: 2em;
+  position: relative;
+  border-radius: 3px;
+  background: rgba(0, 0, 0, 0.15);
+}
+.login-form:before {
+  content: '';
+  position: absolute;
+  top: -2px;
+  left: 0;
+  height: 2px;
+  border-radius: 3px;
+  width: 100%;
+  background: -webkit-gradient(linear, left top, right top, from(#01c9ad), to(#01c9ad));
+  background: linear-gradient(to right, #01c9ad, #01c9ad);
+}
+@media screen and (min-width: 600px) {
+  .login-form {
+    width: 50vw;
+    max-width: 15em;
+  }
+}
+
+.flex-row {
+  display: -webkit-box;
+  display: flex;
+  margin-bottom: 1em;
+}
+
+.lf--label {
+  width: 2em;
+  display: -webkit-box;
+  display: flex;
+  -webkit-box-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+          justify-content: center;
+  background: #f5f6f8;
+  cursor: pointer;
+}
+
+.lf--input {
+  -webkit-box-flex: 1;
+          flex: 1;
+          border-radius: 3px;
+
+          
+  padding: 1em;
+  border: 0;
+  border-radius: 3px;
+
+  color: #8f8f8f;
+  font-size: 1rem;
+}
+.lf--input:focus {
+  outline: none;
+  -webkit-transition: -webkit-transform .15s ease;
+  transition: -webkit-transform .15s ease;
+  transition: transform .15s ease;
+  transition: transform .15s ease, -webkit-transform .15s ease;
+  -webkit-transform: scale(1.1);
+          transform: scale(1.1);
+}
+
+.lf--submit {
+  display: block;
+  padding: 1em;
+  width: 100%;
+  background: -webkit-gradient(linear, left top, right top, from(#01c9ad), to(#01c9ad));
+  background: linear-gradient(to right, #01c9ad, #01c9ad);
+  border: 0;
+  color: #fff;
+  cursor: pointer;
+  font-size: .75em;
+  font-weight: 600;
+  text-shadow: 0 1px 0 rgba(0, 0, 0, 0.2);
+  border-radius: 3px;
+
+}
+.lf--submit:focus {
+  outline: none;
+  -webkit-transition: -webkit-transform .15s ease;
+  transition: -webkit-transform .15s ease;
+  transition: transform .15s ease;
+  transition: transform .15s ease, -webkit-transform .15s ease;
+  -webkit-transform: scale(1.1);
+          transform: scale(1.1);
+}
+
+.lf--forgot {
+  margin-top: 1em;
+  color: #01c9ad;
+  font-size: .65em;
+  text-align: center;
+  position: relative;
+}
+
+::-webkit-input-placeholder {
+  color: #8f8f8f;
+}
+
+::-moz-placeholder {
+  color: #8f8f8f;
+}
+
+:-ms-input-placeholder {
+  color: #8f8f8f;
+}
+
+::-ms-input-placeholder {
+  color: #8f8f8f;
+}
+
+::placeholder {
+  color: #8f8f8f;
+}
