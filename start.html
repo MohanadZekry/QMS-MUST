@@ -196,7 +196,6 @@
 
 		  var docRef = db.collection("queueNumber").doc(department).collection(category).doc("currentTicket");
 		  var docRem = db.collection("services").doc(department).collection(category);
-		  
            
 
 
@@ -262,12 +261,13 @@
 
 				  var token= doc.data().user_token;
 				  console.log(doc.data().user_id);
-				  
+				  var estimateWaitingTime =toString((parseInt(doc.data().service_time))*3);
                   
 var to = [token];
 var n = doc.data().ticket_number;
 var name = doc.data().name;
 var f_name = name.split(' ')[0];
+			  
 $.ajax({
 	type: 'POST',
 	url: 'https://fcm.googleapis.com/fcm/send', 
@@ -279,8 +279,8 @@ $.ajax({
 	data: JSON.stringify({
 		"registration_ids":to,
 		"notification":{
-			"title": "Hurry Up!!",
-			"body": ((f_name) +" your ticket number "+ (n) +" at "+department+" after 3 tickets"),
+			"title": department+" Ticket",
+			"body": ("Be there "+f_name+" after "+estimateWaitingTime),
       			"sound": "default"
 		}
 	}),
