@@ -261,7 +261,7 @@
 
 				  var token= doc.data().user_token;
 				  console.log(doc.data().user_id);
-				  var estimateWaitingTime =toString((parseInt(doc.data().service_time))*3);
+				  var estimateWaitingTime =(parseInt(doc.data().service_time)*3);
                   
 var to = [token];
 var n = doc.data().ticket_number;
