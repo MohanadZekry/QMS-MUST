@@ -267,7 +267,8 @@ var to = [token];
 var n = doc.data().ticket_number;
 var name = doc.data().name;
 var f_name = name.split(' ')[0];
-			  
+	document.getElementById("name").textContent = estimateWaitingTime;	
+			  var stringWait = estimateWaitingTime+"";
 $.ajax({
 	type: 'POST',
 	url: 'https://fcm.googleapis.com/fcm/send', 
@@ -280,7 +281,7 @@ $.ajax({
 		"registration_ids":to,
 		"notification":{
 			"title": department+" Ticket",
-			"body": ("Be there "+f_name+" after "+estimateWaitingTime),
+			"body": ("Be there "+f_name+" after "+stringWait),
       			"sound": "default"
 		}
 	}),
