@@ -44,6 +44,23 @@
 </div>
 <!-- partial -->
 <script>
+  var input = document.getElementById("password");
+  var input1 = document.getElementById("username");
+
+  input.addEventListener("keyup", function(event) {
+    if (event.keyCode === 13) {
+     event.preventDefault();
+     document.getElementById("submit").click();
+    }
+  });
+  input1.addEventListener("keyup", function(event) {
+    if (event.keyCode === 13) {
+     event.preventDefault();
+     document.getElementById("submit").click();
+    }
+  });
+  </script>
+<script>
   // Your web app's Firebase configuration
   var firebaseConfig = {
     apiKey: "AIzaSyAu2RaUIww5TWUnuwg1nBWTkuft1IVPn4Y",
@@ -71,8 +88,7 @@
   document.getElementById("submit").onclick=function(){
   var email =  document.getElementById("username").value;
   var pass =  document.getElementById("password").value;
-  
-  console.log(email+" / "+ pass);
+  sessionStorage.setItem("password", pass);
        firebase.auth().signInWithEmailAndPassword(email, pass).then(function(result){
        
         docRef.where("mail", "==", email)
@@ -94,7 +110,6 @@
 
       console.log(department);
 		  console.log(category);
-      //alert ("Login Successful");
       window.open('dashboard.html', '_self');
         });
     })
