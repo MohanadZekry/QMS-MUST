@@ -47,7 +47,13 @@
 
 	</head>
 	<body style="font-family: coves;">
-		
+		<script>
+			var email = sessionStorage.getItem("mail"); 
+		    var password = sessionStorage.getItem("password");
+			if (email == null || email == "" ){
+			window.location.href= "login.html";
+			}
+		</script>
 <!-- partial -->
  
 		<div class="container">
@@ -421,7 +427,7 @@
 						</div><!-- /gn-scroller -->
 					</nav>
 				</li>
-				<li><a class="gn-icon gn-icon-logout" href="login.html">Logout</a></li>
+				<li><a class="gn-icon gn-icon-logout" href="login.html" onclick="myFunction()">Logout</a></li>
 <!--
 				<li><a class="codrops-icon codrops-icon-prev" href="http://tympanus.net/Development/HeaderEffects/"><span>Previous Demo</span></a></li>
 				<li><a class="codrops-icon codrops-icon-drop" href="http://tympanus.net/codrops/?p=16030"><span>Back to the Codrops Article</span></a></li>
@@ -501,5 +507,7 @@
 		  document.getElementById("user_mail").textContent= mail;
 		  
 		</script>
+				  <script src="js/myscript.js"></script>
+
 	</body>
 </html>
