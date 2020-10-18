@@ -200,71 +200,114 @@
 		  document.getElementById("dep-title").textContent= department;
 		  document.getElementById("cat-title").textContent= category;
 
-		  var docRef = db.collection("queueNumber").doc(department).collection(category).doc("currentTicket");
-		  var docRem = db.collection("services").doc(department).collection(category);
+		  var docRef = db.collection("queueNumber").doc("Receive Books").collection("B").doc("currentTicket");
+		  var docRem = db.collection("services").doc("Receive Books").collection("B");
+		  var docRefemp = db.collection("queueNumber").doc("Receive Books").collection("B").doc("currentTicket").collection("EmployeecurrentTicket").doc(email);
+          console.log("email",email);
 		  
-           
+		  docRefemp.get().then(function(doc) {
+			   nemp = doc.data().number;
 
-
-		  docRef.onSnapshot(function(doc) {
-			 
-			 num = doc.data().number;
-			  document.getElementById("numt").textContent= num;
+			docRef.get().then(function(docc) {
 			
-			  docRem.get().then( function(v) { 
-				  
-				  rem = v.size -(doc.data().number);
-			  
-				  document.getElementById("numr").textContent=rem;
-
-				  docRem.where("ticket_number", "==", num)
+			if ((docc.data().number) == (docc.data().totalTickets)+1){ console.log("kosaha");
+			}
+			else {
+				num = docc.data().number;
+			console.log("empnum",nemp);
+			console.log("num",num);
+			var next = (docc.data().number)+1;
+						if ((docc.data().number) < (docc.data().totalTickets)){
+							docRef.update({
+									number: next
+								});
+								nemp = num;
+								console.log("iff");
+							}
+			docRem.where("ticket_number", "==", nemp)
                  .get()
                  .then(function(querySnapshot) {
-                  querySnapshot.forEach(function(doc) {
-                  
-                  console.log(doc.id, " => ", doc.data());
+                  querySnapshot.forEach(function(doccc) {
+					document.getElementById("numt").textContent= nemp;
+					console.log(doccc.id, " => ", doccc.data());
+					
+					document.getElementById("name").textContent= doccc.data().name;
+					document.getElementById("id").textContent= doccc.data().user_id;
+					document.getElementById("dep").textContent= doccc.data().department;
+					document.getElementById("load").style.visibility = 'hidden' ;
+					document.getElementById("card_con").style.visibility = 'visible' ;
+					if ((docc.data().number) < (docc.data().totalTickets)){
+							
+								docRefemp.update({
+									number: next
+									
+								});
+								nemp = next;
+								console.log("if");
+							}
+				 		});
+			
+		   });
+		}
+		   });
+		   
+		   });
+///////////////////
 
-				  document.getElementById("name").textContent= doc.data().name;
-				  document.getElementById("id").textContent= doc.data().user_id;
-				  document.getElementById("dep").textContent= doc.data().department;
-				  document.getElementById("load").style.visibility = 'hidden' ;
-				  document.getElementById("card_con").style.visibility = 'visible' ;
-				  
-        });
-    })
-    .catch(function(error) {
-        console.log("Error getting documents: ", error);
-    });
+		   document.getElementById("get-next").onclick=function(){
+		  
+			
+			docRefemp.get().then(function(doc) {
+			   nemp = doc.data().number;
 
-
-				  document.getElementById("get-next").onclick=function(){
-					docRem.doc("45412").update({
-				       done: true
-			        });
-					document.getElementById("card_con").style.visibility = 'hidden' ;
-				  document.getElementById("load").style.visibility = 'visible' ;
-                 docRem.where("ticket_number", "==", num)
+			docRef.get().then(function(docc) {
+				
+			if ((docc.data().number) == (docc.data().totalTickets)+1){
+				console.log("kosaha");
+			}
+			else {
+				num = docc.data().number;
+				nemp = num;
+			console.log("empnum",nemp);
+			console.log("num",num);
+			docRem.where("ticket_number", "==", nemp)
                  .get()
                  .then(function(querySnapshot) {
-                  querySnapshot.forEach(function(doc) {
-					doc.update({
-				       done: true
-			        });
-                  console.log(doc.id, " => ", doc.data());
+                  querySnapshot.forEach(function(doccc) {
+					document.getElementById("numt").textContent= nemp;
+				    console.log(doccc.id, " => ", doccc.data());
+					document.getElementById("name").textContent= doccc.data().name;
+					document.getElementById("id").textContent= doccc.data().user_id;
+					document.getElementById("dep").textContent= doccc.data().department;
+					document.getElementById("load").style.visibility = 'hidden' ;
+					document.getElementById("card_con").style.visibility = 'visible' ;
+						var next = (docc.data().number)+1;
+						console.log("next" , next );
+							console.log("num" , num );
+							console.log("total" ,docc.data().totalTickets)
+						if (next <= docc.data().totalTickets){
+							docRef.update({
+									number: next
+								});
+								docRefemp.update({
+									number: next
+								});
+								console.log("if");
+							console.log("next" , next );
+							console.log("num" , num );
+							}
+				 		});
+			
+		   });
+		}
+		   });
+		   
+		   });
 
-				  document.getElementById("name").textContent= doc.data().name;
-				  document.getElementById("id").textContent= doc.data().user_id;
-				  document.getElementById("dep").textContent= doc.data().department; 
-				  document.getElementById("load").style.visibility = 'hidden' ;
-				  document.getElementById("card_con").style.visibility = 'visible' ;
-		        });
-    })
-    .catch(function(error) {
-        console.log("Error getting documents: ", error);
-    });
 
 /////////
-                docRem.where("ticket_number", "==", num+3)
+
+docRem.where("ticket_number", "==", num+3)
                  .get()
                  .then(function(querySnapshot) {
                   querySnapshot.forEach(function(doc) {
@@ -309,20 +352,22 @@ $.ajax({
     })
     .catch(function(error) {
         console.log("Error getting documents: ", error);
-    });			 
-				  
-		
-			   var next = (doc.data().number)+1;
-              if (next <= v.size){
-			  document.getElementById("numt").textContent= doc.data().number;
-			  
+    });	
+		};
 
-			  docRef.set({number:next});
-		  } }
-		  });
-			  });
-		
-			 
+/////////////////////
+		   docRef.onSnapshot(function(doc) {
+			rem = (doc.data().totalTickets) -(doc.data().number);
+			  
+			  document.getElementById("numr").textContent=rem+1;
+
+
+		   });
+
+		 
+				  
+				  
+	 
 
 
 			  $("#get-next").click(function(){
@@ -330,7 +375,8 @@ $.ajax({
 
 });
 			  
-			
+
+	
 		  </script>
 		  <script src="js/myscript.js"></script>
 	</body>
