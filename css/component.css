@@ -364,6 +364,9 @@ input.gn-search:focus {
 .gn-icon-photoshop::before {
 		content: "\F0E4"
 }
+.gn-icon-manual::before {
+	content: "\F0E5"
+}
 
 .gn-icon-illustrator::before {
 		content: "\F144"
