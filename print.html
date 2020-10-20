@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <link rel="stylesheet" href="print-style.css">
+        <title>Receipt example</title>
+    </head>
+    <body>
+        <div class="ticket">
+            <img src="./logo.png" alt="Logo">
+            <p class="centered"><b class="centered">QMS-MUST</b>
+                <br>YOUR NUMBER IS
+                <br>
+                <b class="centered1" id="ticket_number">-</b><br>
+
+            <p class="centered">ID: <b id="user_id">-</b><br>Thanks for using QMS<br><i id="date_now" style="font-size: smaller;"></i></p>
+
+                
+        </div>
+        
+        <script src="print_script.js"></script>
+        <script>
+            var user_id = sessionStorage.getItem("user_id");
+            var ticket_number = sessionStorage.getItem("ticket_number");
+            var date =  sessionStorage.getItem("date");
+            console.log(ticket_number);
+
+            document.getElementById('ticket_number').textContent = ticket_number;
+            document.getElementById('user_id').textContent = user_id;
+            document.getElementById('date_now').textContent = date;
+        
+        </script>
+    </body>
+</html>
