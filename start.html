@@ -204,11 +204,15 @@
           console.log("email",email);
 		  
 
-		  docRef.onSnapshot(function(doc) {
-			rem = (doc.data().totalTickets) -(doc.data().number);
-			 
-			  document.getElementById("numr").textContent=rem+1;
-			  
+		  docRef.get().then(function(doc) {
+			rem = (doc.data().totalTickets)-(doc.data().number);
+			 if ((doc.data().totalTickets) == (doc.data().number))
+			 {
+			  document.getElementById("numr").textContent=rem;
+			 }
+			 else {
+				document.getElementById("numr").textContent=rem;
+			 }
 
 		   });
 
@@ -266,7 +270,17 @@
 			document.getElementById("load").style.visibility = 'visible' ;
 			docRefemp.get().then(function(doc) {
 			   nemp = doc.data().number;
+			   docRef.get().then(function(doc) {
+			rem = (doc.data().totalTickets) -(doc.data().number);
+			 if ((doc.data().totalTickets) == (doc.data().number))
+			 {
+			  document.getElementById("numr").textContent=rem;
+			 }
+			 else {
+				document.getElementById("numr").textContent=rem;
+			 }
 
+		   });
 			docRef.get().then(function(docc) {
 			
 			if ((docc.data().number) == (docc.data().totalTickets)+1){
