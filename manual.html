@@ -52,14 +52,14 @@
 				<div class="layer">
 					<div class="container h-100">
 						<div class="row justify-content-md-center h-100">
-							<div class="card-wrapper">
+							<div class="card-wrapper-Manual">
 								<div class="brand">
 									
 								</div>
 								<div class="card fat" >
 									<div class="card-body">
 										<div class="content" style="text-align: left;" >
-											<div class="ticketcard">
+											<div class="ticketcard-Manual">
 											  <div class="firstinfo"><img  src="img/iconfinder_printer_531905.png">
 												<div class="profileinfo">
 													<form method="post" style="padding: 8px;">
@@ -68,6 +68,7 @@
 														</div>
 														<div   style="  text-align: center;">
 														<select  id="ddm_categories"></select>	
+														
 													</div>								
 												</div>
 												<button style="padding: 8px;  margin: auto;" class="nextbutton" type="button" id = "button-ticket">Get Ticket</button>
@@ -130,15 +131,22 @@ var request = new XMLHttpRequest();
 request.open('GET', 'https://addmission.must.edu.eg/QMSAPI/api/TimeTable/GetCategoryByDay/Receive Books', true);
 request.onload = function () {
 
+
   // Begin accessing JSON data here
   var data = JSON.parse(this.response);
   if (request.status >= 200 && request.status < 400) {
-    data.forEach(categories => {
-  options += "<option>"+ categories.categoryName +"</option>";
-document.getElementById("ddm_categories").innerHTML = options;
-	  console.log(categories.categoryName+"");
-      
-    });
+	var $select = $('#ddm_categories');
+
+    	data.forEach(categories => {
+		var group = $('<optgroup label="' + categories.categoryName + '" />');
+
+		categories.categoryObj.forEach(categoryObjValue =>{
+
+			$('<option />').html(categoryObjValue.categoryObjName).appendTo(group);
+
+		});
+        group.appendTo($select);	  
+	});
   } else {
 
     const errorMessage = document.createElement('marquee');
@@ -167,12 +175,13 @@ request.send();
 		const db= firebase.firestore();
 		
 		  
-
 			  document.getElementById("button-ticket").onclick=function(){
 
+				
+        			var label=$('#ddm_categories :selected').parent().attr('label');
+    				var category = label;
+				
 					var userID = document.getElementById('user_id').value;
-					var category = ( document.getElementById("ddm_categories").value);
-
 					var name = 'Manual';
 					var currentDate = new Date();
 					var date = currentDate.getDate();
