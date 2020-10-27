@@ -187,36 +187,43 @@ request.send();
 					var date = currentDate.getDate();
 					var month = currentDate.getMonth(); 
 					var year = currentDate.getFullYear();
-
+					
 					var monthDateYear  = (month+1) + "/" + date + "/" + year+" - "+ currentDate.getHours() + ":"+ currentDate.getMinutes()+":"+ currentDate.getSeconds();					
 					var docRef = db.collection("queueNumber").doc('Receive Books').collection(category).doc("currentTicket");
-					var docReg = db.collection("servicesDetails").doc(category);
+					var docReg = db.collection("servicesDetails").doc('Receive Books');
+					
+					
 
 					docRef.get().then(function(doc) {
 					if (doc.exists) {
-					var	currentTicket = (doc.data().totalTickets)+1;
+						var windowTicket = doc.data().number;
+						var	currentTicket = (doc.data().totalTickets)+1;
+						var remaining = currentTicket - windowTicket;
 					docRef.update({
-    				"totalTickets": currentTicket
-			  });
+					"totalTickets": currentTicket
+					  });
+					  docReg.get().then(function(doc2) {
+						var estimateTime = doc2.data().time;
+						
 
 					var docRem = db.collection("services").doc('Receive Books').collection(category)
 					.doc(userID).set({
 					department: category,
 					name: "Manual",
-					service_time: 3,
-					service_window : 0,
+					service_window : windowTicket,
 					user_id : userID,
 					ticket_number : currentTicket,
-					service_time : 5,
-					service_window : 0,
+					service_time : estimateTime,
 					user_token : '',
 					date : monthDateYear
-})
+		})
 .then(function() {
 	console.log("Document successfully written!");
 	sessionStorage.setItem("user_id", userID);
 	sessionStorage.setItem("ticket_number", currentTicket);
 	sessionStorage.setItem("date", monthDateYear);
+	sessionStorage.setItem("time", (estimateTime*remaining));
+	sessionStorage.setItem("remaining", remaining);
 
 	window.open("print.html");
 
@@ -224,7 +231,7 @@ request.send();
 .catch(function(error) {
     console.error("Error writing document: ", error);
 });
-
+});
 } else {
 						// doc.data() will be undefined in this case
 						console.log("No such document!");
