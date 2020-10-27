@@ -14,8 +14,8 @@
                 <br>YOUR NUMBER IS
                 <br>
                 <b class="centered1" id="ticket_number">-</b><br>
-
-            <p class="centered">ID: <b id="user_id">-</b><br>Thanks for using QMS<br><i id="date_now" style="font-size: smaller;"></i></p>
+            <p class="centered">ID: <b id="user_id">-</b><br>Thanks for using QMS<br><i id="date_now" style="font-size: smaller;"></i>
+            <i style="font-size: smaller;" id="estimate_time">-</i><br></bt><i style="font-size: smaller;" id="remaining">-</i><br></p>
 
                 
         </div>
@@ -25,11 +25,21 @@
             var user_id = sessionStorage.getItem("user_id");
             var ticket_number = sessionStorage.getItem("ticket_number");
             var date =  sessionStorage.getItem("date");
+            var time = sessionStorage.getItem("time");
+            var remaining = sessionStorage.getItem("remaining");
+           
+            var h =parseInt( time / 60);
+            var m = parseInt(time % 60);
+            var totalWait =  h+"h"+m+"m";
+    
+
             console.log(ticket_number);
 
             document.getElementById('ticket_number').textContent = ticket_number;
             document.getElementById('user_id').textContent = user_id;
             document.getElementById('date_now').textContent = date;
+            document.getElementById('estimate_time').textContent = "Estimate Time:"+totalWait;
+            document.getElementById('remaining').textContent = "Above you :"+remaining;
         
         </script>
     </body>
