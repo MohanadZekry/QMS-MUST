@@ -14,8 +14,10 @@
                 <br>YOUR NUMBER IS
                 <br>
                 <b class="centered1" id="ticket_number">-</b><br>
-            <p class="centered">ID: <b id="user_id">-</b><br>Thanks for using QMS<br><i id="date_now" style="font-size: smaller;"></i>
-            <i style="font-size: smaller;" id="estimate_time">-</i><br></bt><i style="font-size: smaller;" id="remaining">-</i><br></p>
+            <p class="centered">ID: <b id="user_id">-</b><br>
+            <i style="font-size: smaller;" id="estimate_time">-</i><br></bt><i style="font-size: smaller;" id="remaining">-</i><br><i id="date_now" style="font-size: smaller;"></i>
+            <br>Thanks for using QMS
+        </p>
 
                 
         </div>
@@ -38,8 +40,8 @@
             document.getElementById('ticket_number').textContent = ticket_number;
             document.getElementById('user_id').textContent = user_id;
             document.getElementById('date_now').textContent = date;
-            document.getElementById('estimate_time').textContent = "Estimate Time:"+totalWait;
-            document.getElementById('remaining').textContent = "Above you :"+remaining;
+            document.getElementById('estimate_time').textContent = "Estimate Time: "+totalWait;
+            document.getElementById('remaining').textContent = remaining+" Waiting in queue";
         
         </script>
     </body>
