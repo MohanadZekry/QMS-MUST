@@ -92,7 +92,7 @@
 													
 												</div>
 												<form method="POST" class="my-login-validation" novalidate="">
-													<div class="card-title" id="copy"><h5 >Remaining: <b id="numr">--</b></h5></div>
+													<div class="card-title" id="copy"><h5 >Remaining: <b id="numr"></b></h5></div>
 					
 													<div class="form-group m-0">
 														<button  type="button" class="nextbutton" id="get-next">
@@ -142,6 +142,8 @@
 						</div><!-- /gn-scroller -->
 					</nav>
 				</li>
+				<li><a class="codrops-icon codrops-icon-prev" href="display-window.html"target="_blank"><span>display-window</span></a></li>
+
 				<li><a class="gn-icon gn-icon-logout" href="login.html" onclick="myFunction()">Logout</a></li>
 				
 			</ul>
@@ -202,8 +204,7 @@
 		  var docRem = db.collection("services").doc("Receive Books").collection("B");
 		  var docRefemp = db.collection("queueNumber").doc("Receive Books").collection("B").doc("currentTicket").collection("EmployeecurrentTicket").doc(email);
           console.log("email",email);
-		  
-
+		
 		  docRef.get().then(function(doc) {
 			rem = (doc.data().totalTickets)-(doc.data().number);
 			 if ((doc.data().totalTickets) == (doc.data().number))
@@ -267,20 +268,25 @@
 ///////////////////
 
 		   document.getElementById("get-next").onclick=function(){
-			document.getElementById("load").style.visibility = 'visible' ;
-			docRefemp.get().then(function(doc) {
-			   nemp = doc.data().number;
-			   docRef.get().then(function(doc) {
-			rem = (doc.data().totalTickets) -(doc.data().number);
+
+			docRef.get().then(function(docc) {
+		  docRef.onSnapshot(function(doc) {
+			
 			 if ((doc.data().totalTickets) == (doc.data().number))
 			 {
-			  document.getElementById("numr").textContent=rem;
+			  document.getElementById("numr").textContent=(doc.data().totalTickets) -(docc.data().number) ;
 			 }
 			 else {
-				document.getElementById("numr").textContent=rem;
+				document.getElementById("numr").textContent=(doc.data().totalTickets) -(docc.data().number);
 			 }
 
 		   });
+		});
+
+			document.getElementById("load").style.visibility = 'visible' ;
+			docRefemp.get().then(function(doc) {
+			   nemp = doc.data().number;
+			
 			docRef.get().then(function(docc) {
 			
 			if ((docc.data().number) == (docc.data().totalTickets)+1){
