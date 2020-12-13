@@ -84,7 +84,7 @@ docRef.onSnapshot(function(doc) {
     document.getElementById("card_con").style.visibility = 'hidden' ;
   document.getElementById("load").style.visibility = 'visible' ;
  
-  docRef.onSnapshot(function(docc) {
+  docRef.get().then(function(docc) {
       
       num = docc.data().number;
       console.log("num",num);
@@ -94,8 +94,11 @@ docRef.onSnapshot(function(doc) {
         docRef.update({
             number: next
         });
+    
+        num = next;
+        console.log("num",num);
     }
-    num = docc.data().number;
+   
   docRem.where("ticket_number", "==", num)
        .get()
        .then(function(querySnapshot) {
