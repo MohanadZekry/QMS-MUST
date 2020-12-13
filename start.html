@@ -6,16 +6,16 @@
 		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"> 
 		<meta name="viewport" content="width=device-width, initial-scale=1.0"> 
 		<title>QMS Start Service</title>
-		<meta name="description" content="A sidebar menu as seen on the Google Nexus 7 website" />
-		<meta name="keywords" content="google nexus 7 menu, css transitions, sidebar, side menu, slide out menu" />
-		<meta name="author" content="Codrops" />
+		<meta name="description" content="QMS Web " />
+		<meta name="author" content="Mahmoud Mokhtar" />
+		
 		<link rel="stylesheet" type="text/css" href="css/normalize.css" />
 		<link rel="stylesheet" type="text/css" href="css/demo.css" />
 		<link rel="stylesheet" type="text/css" href="css/component.css" />
 		<link rel="stylesheet" type="text/css" href="css/medhat.css" />
-
 		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-		 <script src="https://www.gstatic.com/firebasejs/7.16.1/firebase-app.js"></script>
+		
+		<script src="https://www.gstatic.com/firebasejs/7.16.1/firebase-app.js"></script>
 		 <script src="https://www.gstatic.com/firebasejs/7.16.1/firebase-firestore.js"></script>
 		 <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
 		 <script src="https://www.gstatic.com/firebasejs/7.16.1/firebase-auth.js"></script>
@@ -28,36 +28,24 @@
 		</style>
 	</head>
 	<body style="font-family: coves;">
-		<script>
-			var email = sessionStorage.getItem("mail"); 
-		    var password = sessionStorage.getItem("password");
-			if (email == null || email == "" ){
-			window.location.href= "login.html";
-			}
-		</script>
+		<script src="js/login.js"></script>
 <!-- partial -->
-  <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
-<script src='https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/jquery-ui.min.js'></script>
 
-<script src='https://cdnjs.cloudflare.com/ajax/libs/gsap/1.15.0/TweenMax.min.js'></script><script  src="./script.js"></script>
 <div style="text-align: center;">
 	<div id="load" class="loader" ></div>
 	</div>
-<div class="container">
 	
-				<div class="layer">
-					<div class="container h-100">
-						
-						<div class="row justify-content-md-center h-100">
-							
-							<div class="card-wrapper">
-								<div class="brand">
-
-								</div>
-								
-
-								<div id="card_con" class="card fat" style="visibility: hidden;">
-                                 <div  >
+<div class="container">
+			<div class="layer">
+				<div class="container h-100">	
+					<div class="row justify-content-md-center h-100">							
+						<div class="card-wrapper">
+							<div class="brand"></div>
+						    	 	<div id="card_con" class="card fat" style="visibility: hidden;">
+                              		   <div >
+										<div id="startDiv" style="margin: auto;" class="form-group m-0">
+											
+										</div>
 									<div class="card-body" >
 										<div style="margin-bottom: 20px;">
 										<h4 class="card-title" id="dep-title" ></h4>
@@ -76,7 +64,6 @@
 														</div>
 													  </div>
 													</div>
-												  <!--  <div class="badgescard"> <span class="devicons devicons-django"></span><span class="devicons devicons-python"> </span><span class="devicons devicons-codepen"></span><span class="devicons devicons-javascript_badge"></span><span class="devicons devicons-gulp"></span><span class="devicons devicons-angular"></span><span class="devicons devicons-sass"> </span></div>-->
 												  </div>
 													
 												
@@ -158,246 +145,7 @@
 		<script>
 			new gnMenu( document.getElementById( 'gn-menu' ) );
 		</script>
-		<script>
-			// Your web app's Firebase configuration
-			var firebaseConfig = {
-			  apiKey: "AIzaSyAu2RaUIww5TWUnuwg1nBWTkuft1IVPn4Y",
-			  authDomain: "qms-f137a.firebaseapp.com",
-			  databaseURL: "https://qms-f137a.firebaseio.com",
-			  projectId: "qms-f137a",
-			  storageBucket: "qms-f137a.appspot.com",
-			  messagingSenderId: "1036646415502",
-			  appId: "1:1036646415502:web:64d51a6d915d68f2569ddf",
-			  measurementId: "G-F28BV22X15"
-			};
-
-
-			var department = sessionStorage.getItem("department"); 
-		    var category = sessionStorage.getItem("category");
-			var email = sessionStorage.getItem("mail"); 
-		    var password = sessionStorage.getItem("password");
-
-			// Initialize Firebase
-			firebase.initializeApp(firebaseConfig);
-			const db= firebase.firestore();
-			
-			
-			firebase.auth.Auth.Persistence.LOCAL; 
-    
-            var result = firebase.auth().signInWithEmailAndPassword(email,password);
-    
-                result.catch(function(error){
-             var errorCode = error.code; 
-             var errorMessage = error.message; 
-
-        console.log(errorCode);
-        console.log(errorMessage);
-    });
-
-	     
-		  console.log(department);
-		  console.log(category);
-		  document.getElementById("dep-title").textContent= department;
-		  document.getElementById("cat-title").textContent= category;
-
-		  var docRef = db.collection("queueNumber").doc("Receive Books").collection("B").doc("currentTicket");
-		  var docRem = db.collection("services").doc("Receive Books").collection("B");
-		  var docRefemp = db.collection("queueNumber").doc("Receive Books").collection("B").doc("currentTicket").collection("EmployeecurrentTicket").doc(email);
-          console.log("email",email);
-		
-		  docRef.get().then(function(doc) {
-			rem = (doc.data().totalTickets)-(doc.data().number);
-			 if ((doc.data().totalTickets) == (doc.data().number))
-			 {
-			  document.getElementById("numr").textContent=rem;
-			 }
-			 else {
-				document.getElementById("numr").textContent=rem;
-			 }
-
-		   });
-
-
-		  docRefemp.get().then(function(doc) {
-			   nemp = doc.data().number;
-
-			docRef.get().then(function(docc) {
-			
-			if ((docc.data().number) == (docc.data().totalTickets)+1){
-			}
-			else {
-				num = docc.data().number;
-			console.log("empnum",nemp);
-			console.log("num",num);
-			var next = (docc.data().number)+1;
-						if ((docc.data().number) < (docc.data().totalTickets)){
-							docRef.update({
-									number: next
-								});
-								nemp = num;
-								console.log("iff");
-							}
-			docRem.where("ticket_number", "==", nemp)
-                 .get()
-                 .then(function(querySnapshot) {
-                  querySnapshot.forEach(function(doccc) {
-					document.getElementById("numt").textContent= nemp;
-					console.log(doccc.id, " => ", doccc.data());
-					
-					document.getElementById("name").textContent= doccc.data().name;
-					document.getElementById("id").textContent= doccc.data().user_id;
-					document.getElementById("dep").textContent= doccc.data().department;
-					document.getElementById("load").style.visibility = 'hidden' ;
-					document.getElementById("card_con").style.visibility = 'visible' ;
-					if ((docc.data().number) < (docc.data().totalTickets)){
-							
-								docRefemp.update({
-									number: next
-									
-								});
-								nemp = next;
-								console.log("if");
-							}
-				 		});
-			
-		   });
-		}
-		   });
-		   
-		   });
-///////////////////
-
-		   document.getElementById("get-next").onclick=function(){
-
-			docRef.get().then(function(docc) {
-		  docRef.onSnapshot(function(doc) {
-			
-			 if ((doc.data().totalTickets) == (doc.data().number))
-			 {
-			  document.getElementById("numr").textContent=(doc.data().totalTickets) -(docc.data().number) ;
-			 }
-			 else {
-				document.getElementById("numr").textContent=(doc.data().totalTickets) -(docc.data().number);
-			 }
-
-		   });
-		});
-
-			document.getElementById("load").style.visibility = 'visible' ;
-			docRefemp.get().then(function(doc) {
-			   nemp = doc.data().number;
-			
-			docRef.get().then(function(docc) {
-			
-			if ((docc.data().number) == (docc.data().totalTickets)+1){
-			}
-			else {
-				num = docc.data().number;
-			console.log("empnum",nemp);
-			console.log("num",num);
-			var next = (docc.data().number)+1;
-						if ((docc.data().number) < (docc.data().totalTickets)){
-							docRef.update({
-									number: next
-								});
-								nemp = num;
-								console.log("iff");
-							}
-			docRem.where("ticket_number", "==", nemp)
-                 .get()
-                 .then(function(querySnapshot) {
-                  querySnapshot.forEach(function(doccc) {
-					document.getElementById("numt").textContent= nemp;
-					console.log(doccc.id, " => ", doccc.data());
-					
-					document.getElementById("name").textContent= doccc.data().name;
-					document.getElementById("id").textContent= doccc.data().user_id;
-					document.getElementById("dep").textContent= doccc.data().department;
-					document.getElementById("load").style.visibility = 'hidden' ;
-					document.getElementById("card_con").style.visibility = 'visible' ;
-					if ((docc.data().number) < (docc.data().totalTickets)){
-							
-								docRefemp.update({
-									number: next
-									
-								});
-								nemp = next;
-								console.log("if");
-							}
-				 		});
-			
-		   });
-		}
-		   });
-		   
-		   });
-/////////
-
-docRem.where("ticket_number", "==", num+3)
-                 .get()
-                 .then(function(querySnapshot) {
-                  querySnapshot.forEach(function(doc) {
-                  
-				  var token= doc.data().user_token;
-				  var estimateWaitingTime =(parseInt(doc.data().service_time)*3);
-                  
-var to = [token];
-var n = doc.data().ticket_number;
-var name = doc.data().name;
-var f_name = name.split(' ')[0];
-document.getElementById("name").textContent = estimateWaitingTime;	
-var stringWait = estimateWaitingTime+"";
-$.ajax({
-	type: 'POST',
-	url: 'https://fcm.googleapis.com/fcm/send', 
-	headers:{
-		Authorization: 'key=AAAA8Vzw_I4:APA91bE9CrQjbGj6BKaFXHPyxjwBSm7TtQRhRgQRfgJ6woJE24dAKK_SSpWdPSjvrrE1cezWd825SaUXplvphUPiF0jkM4rwcH3XF7bm9-l4DQVry3LHBBaaB9gohNH3vhxZjTikqF9Y'
-	},
-	contentType: 'application/json',
-	dataType: 'json',
-	data: JSON.stringify({
-		"registration_ids":to,
-		"notification":{
-			"title": department+" Ticket",
-			"body": (f_name+" Be there after "+stringWait+" mins"),
-      			"sound": "default"
-		}
-	}),
-	success: function(response){
-		
-	},
-	error: function(error){
-		
-		alert("Some error occurred");
-	}
-});
-
-
-
-        });
-    })
-    .catch(function(error) {
-        console.log("Error getting documents: ", error);
-	});	
-	//location.reload();
-		};
-
-/////////////////////
-		  
-		 
-				  
-				  
-	 
-
-
-			  $("#get-next").click(function(){
-
-
-});
-			  
-
-	
-		  </script>
+		<script src="js/start.js"></script>
 		  <script src="js/myscript.js"></script>
 	</body>
 </html>
