@@ -122,9 +122,9 @@
 	  console.log(department);
 	  console.log(category);
 
-	  var docRef = db.collection("queueNumber").doc("Receive Books").collection("B").doc("currentTicket");
-	  var docRem = db.collection("services").doc("Receive Books").collection("B");
-	  var docRefemp = db.collection("queueNumber").doc("Receive Books").collection("B").doc("currentTicket").collection("EmployeecurrentTicket").doc(email);
+	  var docRef = db.collection("queueNumber").doc("Clinics").collection("Bones Clinic").doc("currentTicket");
+	  var docRem = db.collection("services").doc("Clinics").collection("Bones Clinic");
+	  var docRefemp = db.collection("queueNumber").doc("Clinics").collection("Bones Clinic").doc("currentTicket");
 	  console.log("email",email);
 	  
 
@@ -133,10 +133,10 @@
     .onSnapshot(function(doc) {
         // console.log("Current data: ", doc.data().number);
 		// var txt = "Agent Number"+ (doc.data().number-1)+"Please Come to Window Number 1";
-		document.getElementById("Tnum").textContent=doc.data().number-1;
+		document.getElementById("Tnum").textContent=doc.data().number;
 		document.getElementById("Wnum").textContent="#B1";
 		responsiveVoice.setDefaultRate(0.9);
-		var txt = 'Patient Number' + (doc.data().number-1) + 'Please goes to window number 1';
+		var txt = 'Patient Number' + (doc.data().number) + 'Please goes to window number 1';
 		responsiveVoice.speak(txt);
 		// var tts = window.speechSynthesis;
 		// var voices =[];
