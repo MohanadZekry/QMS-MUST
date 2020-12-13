@@ -128,7 +128,7 @@
 			var options = "";
 
 var request = new XMLHttpRequest();
-request.open('GET', 'https://addmission.must.edu.eg/QMSAPI/api/TimeTable/GetCategoryByDay/Receive Books', true);
+request.open('GET', 'https://addmission.must.edu.eg/QMSAPI/api/TimeTable/GetCategoryByDay/Clinics', true);
 request.onload = function () {
 
 
@@ -189,8 +189,8 @@ request.send();
 					var year = currentDate.getFullYear();
 					
 					var monthDateYear  = (month+1) + "/" + date + "/" + year+" - "+ currentDate.getHours() + ":"+ currentDate.getMinutes()+":"+ currentDate.getSeconds();					
-					var docRef = db.collection("queueNumber").doc('Receive Books').collection(category).doc("currentTicket");
-					var docReg = db.collection("servicesDetails").doc('Receive Books');
+					var docRef = db.collection("queueNumber").doc('Clinics').collection(category).doc("currentTicket");
+					var docReg = db.collection("servicesDetails").doc('Clinics');
 					
 					
 
@@ -206,7 +206,7 @@ request.send();
 						var estimateTime = doc2.data().time;
 						
 
-					var docRem = db.collection("services").doc('Receive Books').collection(category)
+					var docRem = db.collection("services").doc('Clinics').collection(category)
 					.doc(userID).set({
 					department: category,
 					name: "Manual",
