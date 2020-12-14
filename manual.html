@@ -207,7 +207,7 @@ request.send();
 						
 
 					var docRem = db.collection("services").doc('Clinics').collection(category)
-					.doc(userID).set({
+					.add({
 					department: category,
 					name: "Manual",
 					service_window : windowTicket,
