@@ -119,7 +119,7 @@ docRef.onSnapshot(function(doc) {
  });
  
 
-docRem.where("ticket_number", "==", num+3)
+docRem.where("ticket_number", "==", num+2)
        .get()
        .then(function(querySnapshot) {
         querySnapshot.forEach(function(doc) {
@@ -159,7 +159,6 @@ alert("Some error occurred");
 });
 
 
-
 });
 })
 .catch(function(error) {
@@ -167,13 +166,6 @@ console.log("Error getting documents: ", error);
 });	
 //location.reload();
 };
-
-/////////////////////
-
-
-        
-        
-
 
 
     $("#get-next").click(function(){
