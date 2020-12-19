@@ -188,7 +188,7 @@ body {
 	left: 25%;
 	outline: 5px solid #ecf0f1; /* avoid rounding gaps */
 	background: #ecf0f1;
-	color: #97a8b2;
+	color: #D65998;
 	-webkit-transform: translateX(100%);
 	transform: translateX(100%);
 }
