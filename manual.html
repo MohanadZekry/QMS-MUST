@@ -14,8 +14,6 @@
 		<link rel="stylesheet" type="text/css" href="css/component.css" />
 		<link rel="stylesheet" type="text/css" href="css/medhat.css" />
 
-
-
 		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 		 <script src="https://www.gstatic.com/firebasejs/7.16.1/firebase-app.js"></script>
 		 <script src="https://www.gstatic.com/firebasejs/7.16.1/firebase-firestore.js"></script>
@@ -125,10 +123,16 @@
 		new gnMenu( document.getElementById( 'gn-menu' ) );
 	</script>
 	<script>
+
+var department = sessionStorage.getItem("department"); 
+  		var category = sessionStorage.getItem("category");
+			 console.log(department);
+			 console.log(category);
+
 			var options = "";
 
 var request = new XMLHttpRequest();
-request.open('GET', 'https://addmission.must.edu.eg/QMSAPI/api/TimeTable/GetCategoryByDay/Clinics', true);
+request.open('GET', 'https://addmission.must.edu.eg/QMSAPI/api/TimeTable/GetCategoryByDay/'+department, true);
 request.onload = function () {
 
 
@@ -174,8 +178,9 @@ request.send();
 		firebase.initializeApp(firebaseConfig);
 		const db= firebase.firestore();
 		
+		
 		  
-			  document.getElementById("button-ticket").onclick=function(){
+		  document.getElementById("button-ticket").onclick=function(){
 
 				
         			var label=$('#ddm_categories :selected').parent().attr('label');
@@ -189,8 +194,8 @@ request.send();
 					var year = currentDate.getFullYear();
 					
 					var monthDateYear  = (month+1) + "/" + date + "/" + year+" - "+ currentDate.getHours() + ":"+ currentDate.getMinutes()+":"+ currentDate.getSeconds();					
-					var docRef = db.collection("queueNumber").doc('Clinics').collection(category).doc("currentTicket");
-					var docReg = db.collection("servicesDetails").doc('Clinics');
+					var docRef = db.collection("queueNumber").doc(department).collection(category).doc("currentTicket");
+					var docReg = db.collection("servicesDetails").doc(department);
 					
 					
 
@@ -206,7 +211,7 @@ request.send();
 						var estimateTime = doc2.data().time;
 						
 
-					var docRem = db.collection("services").doc('Clinics').collection(category)
+					var docRem = db.collection("services").doc(department).collection(category)
 					.add({
 					department: category,
 					name: "Manual",
@@ -215,16 +220,17 @@ request.send();
 					ticket_number : currentTicket,
 					service_time : estimateTime,
 					user_token : '',
-					date : monthDateYear
+					time : monthDateYear
 		})
-.then(function() {
+.then(ref => {
 	console.log("Document successfully written!");
-	sessionStorage.setItem("user_id", userID);
+	sessionStorage.setItem("uid", ref.id);
 	sessionStorage.setItem("ticket_number", currentTicket);
 	sessionStorage.setItem("date", monthDateYear);
 	sessionStorage.setItem("time", (estimateTime*remaining));
 	sessionStorage.setItem("remaining", remaining);
-
+	sessionStorage.setItem("category", category);
+		
 	window.open("print.html");
 
 })
