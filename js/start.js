@@ -119,7 +119,7 @@ docRef.onSnapshot(function(doc) {
  });
  
 
-docRem.where("ticket_number", "==", num+2)
+docRem.where("ticket_number", "==", num+4)
        .get()
        .then(function(querySnapshot) {
         querySnapshot.forEach(function(doc) {
