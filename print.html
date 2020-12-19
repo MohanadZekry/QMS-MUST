@@ -5,18 +5,21 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
         <link rel="stylesheet" href="print-style.css">
-        <title>Manual</title>
+        <title>Receipt example</title>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/qrious/4.0.2/qrious.min.js"></script>
+		
     </head>
     <body>
         <div class="ticket">
-            <img src="./logo.png" alt="Logo">
             <p class="centered"><b class="centered">QMS</b>
+                <br>SCAN HERE
+                <canvas id="qr-code"></canvas>
                 <br>YOUR NUMBER IS
                 <br>
                 <b class="centered1" id="ticket_number">-</b><br>
-            <p class="centered">Patient : <b id="user_id">-</b><br>
+            <!-- <p class="centered">ID: <b id="user_id">-</b><br> -->
             <i style="font-size: smaller;" id="estimate_time">-</i><br></bt><i style="font-size: smaller;" id="remaining">-</i><br><i id="date_now" style="font-size: smaller;"></i>
-            <br>Thanks for using QMS
+            <br>Thanks for using <img src="img/logo.png" style="width: 50px; height: 50px;"/>
         </p>
 
                 
@@ -24,26 +27,35 @@
         
         <script src="print_script.js"></script>
         <script>
-            var user_id = sessionStorage.getItem("user_id");
+            var uid = sessionStorage.getItem("uid");
             var ticket_number = sessionStorage.getItem("ticket_number");
             var date =  sessionStorage.getItem("date");
             var time = sessionStorage.getItem("time");
             var remaining = sessionStorage.getItem("remaining");
-           
+            var category = sessionStorage.getItem("category");
+         
+
             var h =parseInt( time / 60);
             var m = parseInt(time % 60);
             var totalWait =  h+"h"+m+"m";
-    
+      
+            var res = date.split("-");
 
-            console.log(ticket_number);
+            qrcodeTxt ='QMS-'+uid+'-'+category+'-'+ticket_number;
 
             document.getElementById('ticket_number').textContent = ticket_number;
-            document.getElementById('user_id').textContent = user_id;
             document.getElementById('date_now').textContent = date;
             document.getElementById('estimate_time').textContent = "Estimate Time: "+totalWait;
             document.getElementById('remaining').textContent = remaining+" Waiting in queue";
-        
-            
+            var qr;
+			(function() {
+                    qr = new QRious({
+                    element: document.getElementById('qr-code'),
+                    size: 120,
+                    value: qrcodeTxt
+                });
+            })();
+
         </script>
     </body>
 </html>
